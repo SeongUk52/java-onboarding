@@ -3,22 +3,26 @@ package onboarding;
 import java.util.List;
 
 class Problem1 {
+    private static final int pobiWin = 1;
+    private static final int crongWin = 2;
+    private static final int draw = 0;
+    private static final int unexpected = -1;
     public static int solution(List<Integer> pobi, List<Integer> crong) {
         int answer = Integer.MAX_VALUE;
         if (pobi.get(1) - pobi.get(0) != 1 )
-            return -1;
+            return unexpected;
         if (crong.get(1) - crong.get(0) != 1 )
-            return -1;
+            return unexpected;
         Integer pobiValue = maxNumberInPerson(pobi);
         Integer crongValue = maxNumberInPerson(crong);
         if (pobiValue > crongValue) {
-            answer = 1;
+            answer = pobiWin;
         }
         if (crongValue > pobiValue){
-            answer = 2;
+            answer = crongWin;
         }
         if (crongValue.equals(pobiValue)){
-            answer = 0;
+            answer = draw;
         }
         return answer;
     }
